@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Rating App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1.5rem;
+    }
+  
+    /* Form Styles */
+    #movieForm input {
+      border: none;
+      outline: none;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+  
+    #movieForm input:focus {
+      transform: scale(1.02);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+  
+    #movieForm button {
+      border-radius: 0.5rem;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+  
+    #movieForm button:hover {
+      background: #1e90ff;
+      transform: translateY(-2px);
+    }
+  
+    /* Search Bar */
+    #searchMovie {
+      border-radius: 1.5rem;
+      padding: 0.8rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.2s ease;
+    }
+  
+    #searchMovie:focus {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Movie Cards */
+    .card {
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+  
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+  
+    .card img {
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+  
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    .card-text {
+      font-size: 0.9rem;
+      color: #555;
+    }
+  
+    .btn-primary {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      border: none;
+      color: #fff;
+    }
+  
+    .btn-primary:hover {
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+    }
+  
+  /* delete btn */
+  .delete-btn {
+  display: inline-block; /* Prevents the button from taking the full width */
+  padding: 0.5em 1em; /* Adjusts the padding to make it look proportional */
+  text-align: center; /* Centers the text inside the button */
+  width: 100px;;
+}
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    #movieList .card {
+      animation: fadeIn 0.8s ease;
+    }
+  
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+  
+      .card {
+        flex-direction: column;
+      }
+  
+      .card img {
+        border-radius: 1rem 1rem 0 0;
+      }
+    }
+  </style>
+  
+
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Movie Rating App</h1>
+    <form id="movieForm" class="mb-4" enctype="multipart/form-data">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <input type="text" id="movieName" class="form-control" placeholder="Movie Name" required>
+        </div>
+        <div class="col-md-2">
+          <input type="text" id="movieGenre" class="form-control" placeholder="Genre" required>
+        </div>
+        <div class="col-md-2">
+          <input type="number" id="movieRating" class="form-control" placeholder="Rating (1-10)" min="1" max="10" required>
+        </div>
+        <div class="col-md-3">
+          <input type="file" id="movieImage" class="form-control" accept="image/*" required>
+        </div>
+        <div class="col-md-2 d-grid">
+          <button type="submit" class="btn btn-primary">Add Movie</button>
+        </div>
+      </div>
+    </form>
+    <div class="input-group mb-4">
+      <input type="text" id="searchMovie" class="form-control" placeholder="Search movies...">
+    </div>
+    <div id="movieList" class="row g-3">
+      <!-- Movie cards will be dynamically added here -->
+    </div>
+  </div>
+  <button id="deleteLocalStorage" class="btn btn-danger btn-md mx-auto d-inline-block">Delete All Movies</button>
+
+
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
+
